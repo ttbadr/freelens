@@ -93,6 +93,7 @@
     "@freelensapp/list-layout": "workspace:^",
     "@freelensapp/logger": "workspace:^",
     "@freelensapp/messaging": "workspace:^",
+    "@freelensapp/messaging-for-main": "workspace:^",
     "@freelensapp/metrics": "workspace:^",
     "@freelensapp/node-fetch": "workspace:^",
     "@freelensapp/notifications": "workspace:^",
