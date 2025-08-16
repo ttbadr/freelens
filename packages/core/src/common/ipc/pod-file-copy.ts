@@ -5,7 +5,7 @@
  */
 
 import type { Pod } from "@freelensapp/kube-object";
-import type { RequestChannel } from "../../features/messaging/requesting-of-requests/request-from-channel.injectable";
+import type { RequestChannel } from "@freelensapp/messaging";
 
 export interface PodDownloadRequest {
   pod: Pod;
