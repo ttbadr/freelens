@@ -1,0 +1,15 @@
+.InputDialog {
+  .input-dialog-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .Icon {
+      margin-right: 10px;
+    }
+  }
+
+  .confirm-buttons {
+    margin-top: 20px;
+  }
+}

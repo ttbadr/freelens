@@ -314,6 +314,56 @@ export class Kubectl {
     }
   }
 
+  public async copyFromPod(
+    namespace: string,
+    podName: string,
+    containerName: string,
+    sourcePath: string,
+    destinationPath: string,
+  ) {
+    const path = await this.getPath();
+    const args = [
+      "cp",
+      `${namespace}/${podName}:${sourcePath}`,
+      destinationPath,
+      "-c",
+      containerName,
+    ];
+
+    this.dependencies.logger.info(`Copying from pod with args: ${args.join(" ")}`);
+
+    const result = await this.dependencies.execFile(path, args);
+
+    if (!result.callWasSuccessful) {
+      throw new Error(`Failed to copy from pod: ${result.error.message}`);
+    }
+  }
+
+  public async copyToPod(
+    namespace: string,
+    podName: string,
+    containerName: string,
+    sourcePath: string,
+    destinationPath: string,
+  ) {
+    const path = await this.getPath();
+    const args = [
+      "cp",
+      sourcePath,
+      `${namespace}/${podName}:${destinationPath}`,
+      "-c",
+      containerName,
+    ];
+
+    this.dependencies.logger.info(`Copying to pod with args: ${args.join(" ")}`);
+
+    const result = await this.dependencies.execFile(path, args);
+
+    if (!result.callWasSuccessful) {
+      throw new Error(`Failed to copy to pod: ${result.error.message}`);
+    }
+  }
+
   protected async writeInitScripts() {
     const binariesDir = this.dependencies.baseBundledBinariesDirectory;
     const kubectlPath = this.dependencies.state.downloadKubectlBinaries
